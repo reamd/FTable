@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>表格组件</title>
+    <style type="text/css">
+        * {margin:0; padding: 0;}
+        body{
+            font-size:12px;
+            overflow: hidden;
+        }
+        table{border:solid 1px #ccc; border-collapse:collapse;}
+        table td,table th{border:solid 1px #ccc; line-height:22px; height:22px; padding:0;}
+        #tbheader td{background:#fff;}
+
+        ::-webkit-scrollbar {
+            overflow: visible;
+            width: 6px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-button {
+            width: 0;
+            height: 0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            min-height: 6px;
+            padding: 100px 0 0;
+            border: solid transparent;
+            border-width: 1px;
+            background-color: rgba(138, 153, 170, .6);
+            background-clip: padding-box;
+            border-radius:3px;
+        }
+
+        ::-webkit-scrollbar-thumb:horizontal {
+            padding: 0 0 0 100px;
+            border-width: 6px 1px 1px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(138, 153, 170, .8);
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            background-color: rgba(138, 153, 170, 1);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-track-piece{
+            background-color:transparent;
+        }
+        ::-webkit-scrollbar-track{
+            background-color:transparent;
+        }
+    </style>
+</head>
+<body>
+固定表头、固定左边单元格 示例：
+<br />
+<div id="divBox" style="overflow:scroll;height:520px;width:414px;"></div>
+
+<!--原生js表格库-->
+<script src="FTable.js"></script>
+<script type="text/javascript">
+    function test(){
+        var box = document.getElementById('divBox');
+        var strHtml = '<table id="tbTest" cellpadding="0" cellspacing="0" style="text-align:center;width:680px;">';
+        for(var i=0; i<1; i++){
+            strHtml += '<tr>';
+            for(var j=0; j<8; j++){
+                if(j < 8-1){
+                    strHtml += '<th style="width:80px;">';
+                } else {
+                    strHtml += '<th>';
+                }
+                strHtml += '第' + (i+1) + '行第' + (j+1) + '列';
+                strHtml += '</th>';
+            }
+            strHtml += '</tr>';
+        }
+        for(var i=1; i<30; i++){
+            strHtml += '<tr>';
+            for(var j=0; j<8; j++){
+                if(j < 8-1){
+                    strHtml += '<td style="width:80px;">';
+                } else {
+                    strHtml += '<td>';
+                }
+                strHtml += '第' + (i+1) + '行第' + (j+1) + '列';
+                strHtml += '</td>';
+            }
+            strHtml += '</tr>';
+        }
+        strHtml += '</table>';
+        box.innerHTML = strHtml;
+    }
+    test();
+    //调用固定表头类(项目标识，目标表格，{固定行数,固定列数})
+    var testObj = new FTable('test', document.getElementById('tbTest'), {rows:1, cols:1});
+</script>
+</body>
+</html>
